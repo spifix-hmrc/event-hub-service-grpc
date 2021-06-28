@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+package uk.gov.hmrc.eventhub.v1;
+
+message Event {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue event_id = 2;
+  google.protobuf.StringValue topic = 3;
+  google.protobuf.StringValue subject = 4;
+  google.protobuf.StringValue timestamp = 5;
+  google.protobuf.StringValue event = 6;
+}

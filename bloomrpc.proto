@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package uk.gov.hmrc.eventhub.v1;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service EventHubService {
+  rpc CreateEvent (Event) returns (google.protobuf.Empty) {}
+  rpc StreamEvents (StreamEventsRequest) returns (stream Event) {}
+  rpc StreamEventsFrom (StreamEventsFromRequest) returns (stream Event) {}
+  rpc StreamEventsIn (StreamEventsInRequest) returns (stream Event) {}
+}
+
+message StreamEventsRequest {
+  google.protobuf.StringValue topic = 1;
+}
+
+message StreamEventsFromRequest {
+  google.protobuf.StringValue topic = 1;
+  google.protobuf.StringValue from_id = 2;
+}
+
+message StreamEventsInRequest {
+  repeated string in_ids = 2;
+}
+
+message Event {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue event_id = 2;
+  google.protobuf.StringValue topic = 3;
+  google.protobuf.StringValue subject = 4;
+  google.protobuf.StringValue timestamp = 5;
+  google.protobuf.StringValue event = 6;
+}
